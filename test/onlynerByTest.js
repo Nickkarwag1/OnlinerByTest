@@ -6,11 +6,12 @@ describe('Open Page', function() {
         await browser.pause(3000);
         enterButton.click();
         await browser.pause(3000);
-        let inputMail = $('//input[@placeholder = \'Ник или e-mail\']');
-        inputMail.addValue('test@gmail.com');
+        const user = {username: 'test@gmail.com', password:'12314351325'}
+        const inputMail = $('//input[@placeholder = \'Ник или e-mail\']');
+        inputMail.addValue(user.username);
         await browser.pause(3000);
-        let inputPassword = $('//input[@placeholder = \'Пароль\']');
-        inputPassword.addValue('12314351325')
+        const inputPassword = $('//input[@placeholder = \'Пароль\']');
+        inputPassword.addValue(user.password)
         await browser.pause(5000);
     });
 });

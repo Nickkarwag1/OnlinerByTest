@@ -21,7 +21,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/onlynerByTest.js'
+        './test/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
