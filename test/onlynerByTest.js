@@ -5,6 +5,8 @@ const ENTER_BUTTON_SELECTOR = "//div[text()='Вход']";
 const CLICK_TO_COME_IN_BUTTON_SELECTOR = "//button[contains(@class, 'button')]";
 const CLICK_USER_PROFILE = "//div[contains(@class,'user-avatar')]";
 const CLICK_NAME_USER = "//a[contains(@class,'profile__link')]";
+const { expect } = require("chai");
+const NAME_USER_IN_PAGE = "//div[contains(@class, 'header__name')]";
 
 describe("Open Page", function () {
   it("Open browser page in url and input login & password", async function () {
@@ -26,5 +28,7 @@ describe("Open Page", function () {
     const userName = $(CLICK_NAME_USER);
     await userName.click();
     await browser.pause(3000);
+    const nameInPage = $(NAME_USER_IN_PAGE);
+    expect(await nameInPage.isDisplayed()).to.be.true;
   });
 });
