@@ -1,3 +1,4 @@
+/*
 const USER = { USERNAME: "nick98_molo@icloud.com", PASSWORD: "Kol90407" };
 const EMAIL_INPUT_SELECTOR = "//input[@placeholder = 'Ник или e-mail']";
 const PASSWORD_INPUT_SELECTOR = "//input[@placeholder = 'Пароль']";
@@ -32,3 +33,4 @@ describe("Open Page", function () {
     expect(await nameInPage.isDisplayed()).to.be.true;
   });
 });
+*/

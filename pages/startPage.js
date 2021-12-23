@@ -1,7 +1,4 @@
-const USER = {
-  USERNAME: "nick98_molo@icloud.com",
-  PASSWORD: "Kol90407",
-};
+
 
 const SELECTORS = {
   ENTER_BUTTON: "//div[text()='Вход']",
@@ -10,9 +7,9 @@ const SELECTORS = {
   CLICK_TO_COME_IN_BUTTON: "//button[contains(@class, 'button')]",
 };
 
-async function enter(SELECTORS) {
+async function clickLogin() {
   await $(SELECTORS.ENTER_BUTTON).click();
 }
 
-const enterLogPage = { enter };
-export { enterLogPage, SELECTORS, USER };
+const EnterLogPage = { clickLogin };
+export default  EnterLogPage;
