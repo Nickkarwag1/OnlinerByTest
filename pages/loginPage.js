@@ -6,16 +6,18 @@ const SELECTORS = {
 };
 
 async function setUsername(username) {
-  await $(SELECTORS.EMAIL_INPUT).setValue(username);
+  await $(SELECTORS.EMAIL_INPUT).addValue(username);
 }
 
 async function setPassword(password) {
-  await $(SELECTORS.PASSWORD_INPUT).setValue(password);
+  await $(SELECTORS.PASSWORD_INPUT).addValue(password);
 }
 
 async function logIn(user) {
   await setUsername(user.username);
+  await browser.pause(1000);
   await setPassword(user.password);
+  await browser.pause(1000)
   await $(SELECTORS.CLICK_TO_COME_IN_BUTTON).click();
 }
 
