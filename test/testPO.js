@@ -1,12 +1,16 @@
-import { SELECTORS, USER } from "../patternPageObject/pages/startPage";
-import { enterLogPage } from "../patternPageObject/pages/startPage";
-import LoginPage from "../patternPageObject/pages/loginPage";
+import EnterLogPage from "../pages/startPage";
+import LoginPage from "../pages/loginPage";
+
+const USER = {
+  USERNAME: "nick98_molo@icloud.com",
+  PASSWORD: "Kol90407",
+};
+
 
 describe("Open Page", function () {
   it("Open browser page in url and input login & password", async function () {
     await browser.url("https://www.onliner.by/");
-    await browser.pause(2000);
-    await enterLogPage.enter(SELECTORS);
+    await EnterLogPage.clickLogin();
     await LoginPage.logIn(USER);
   });
 });

@@ -1,4 +1,9 @@
-import { SELECTORS } from "patternPageObject/pages/startPage";
+const SELECTORS = {
+  ENTER_BUTTON: "//div[text()='Вход']",
+  EMAIL_INPUT: "//input[@placeholder = 'Ник или e-mail']",
+  PASSWORD_INPUT: "//input[@placeholder = 'Пароль']",
+  CLICK_TO_COME_IN_BUTTON: "//button[contains(@class, 'button')]",
+};
 
 async function setUsername(username) {
   await $(SELECTORS.EMAIL_INPUT).setValue(username);
