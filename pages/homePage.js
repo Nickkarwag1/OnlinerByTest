@@ -7,6 +7,7 @@ const SELECTOR = {
 
 async function clickNameProfile() {
   await $(SELECTOR.ICON_USER_PROFILE).click();
+  await browser.pause(1000);
   await $(SELECTOR.NAME_USER_PROFILE).click();
 }
 

@@ -14,9 +14,9 @@ async function setPassword(password) {
 }
 
 async function logIn(user) {
-  await setUsername(user.username);
+  await setUsername(user.USERNAME);
   await browser.pause(1000);
-  await setPassword(user.password);
+  await setPassword(user.PASSWORD);
   await browser.pause(1000)
   await $(SELECTORS.CLICK_TO_COME_IN_BUTTON).click();
 }
