@@ -5,4 +5,5 @@ const CONFIG = {
         PASSWORD: "Kol90407",
     }
 }
+
 export default CONFIG;
