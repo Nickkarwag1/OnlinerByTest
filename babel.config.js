@@ -5,8 +5,8 @@ module.exports = {
             'module-resolver',
             {
                 // TODO: Read about absolute pathes in js and configure according to the your project
-                root: ['./src'],
-                alias: { src: './src', config: './config', variables: './variables' },
+                root: ['./'],
+                alias: { pages: './pages', test: './test', utils: './utils' },
             },
         ],
     ],

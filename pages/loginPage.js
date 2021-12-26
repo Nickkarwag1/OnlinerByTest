@@ -1,3 +1,5 @@
+import element from "../element/element";
+
 const SELECTORS = {
   ENTER_BUTTON: "//div[text()='Вход']",
   EMAIL_INPUT: "//input[@placeholder = 'Ник или e-mail']",
@@ -6,17 +8,17 @@ const SELECTORS = {
 };
 
 async function setUsername(username) {
-  await $(SELECTORS.EMAIL_INPUT).addValue(username);
+  await element(SELECTORS.EMAIL_INPUT).setValue(username)
 }
 
 async function setPassword(password) {
-  await $(SELECTORS.PASSWORD_INPUT).addValue(password);
+  await element(SELECTORS.PASSWORD_INPUT).setValue(password)
 }
 
-async function logIn(user) {
-  await setUsername(user.USERNAME);
-  await setPassword(user.PASSWORD);
-  await $(SELECTORS.CLICK_TO_COME_IN_BUTTON).click();
+async function logIn({USERNAME, PASSWORD}) {
+  await setUsername(USERNAME);
+  await setPassword(PASSWORD);
+  await element(SELECTORS.CLICK_TO_COME_IN_BUTTON).clickElement();
 }
 
 const LoginPage = { logIn };
