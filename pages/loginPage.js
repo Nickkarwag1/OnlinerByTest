@@ -8,14 +8,14 @@ const SELECTORS = {
 };
 
 async function setUsername(username) {
-  await element(SELECTORS.EMAIL_INPUT).setValue(username)
+  await element(SELECTORS.EMAIL_INPUT).setValue(username);
 }
 
 async function setPassword(password) {
-  await element(SELECTORS.PASSWORD_INPUT).setValue(password)
+  await element(SELECTORS.PASSWORD_INPUT).setValue(password);
 }
 
-async function logIn({USERNAME, PASSWORD}) {
+async function logIn({ USERNAME, PASSWORD }) {
   await setUsername(USERNAME);
   await setPassword(PASSWORD);
   await element(SELECTORS.CLICK_TO_COME_IN_BUTTON).clickElement();
