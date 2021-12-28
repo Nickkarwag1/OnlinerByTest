@@ -29,7 +29,7 @@ exports.config = {
   mochaOpts: {
     ui: "bdd",
     timeout: 60000,
-    // grep: 'only' //Uncomment and put 'only' in it if you need to run one test
+    grep: 'only' //Uncomment and put 'only' in it if you need to run one test
   },
 
   /**
