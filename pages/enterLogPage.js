@@ -1,4 +1,4 @@
-
+import element from "../element/element";
 
 const SELECTORS = {
   ENTER_BUTTON: "//div[contains(@class, 'item--text')]",
@@ -8,7 +8,7 @@ const SELECTORS = {
 };
 
 async function clickLogin() {
-  await $(SELECTORS.ENTER_BUTTON).click();
+  await element(SELECTORS.ENTER_BUTTON).clickElement();
 }
 
 const EnterLogPage = { clickLogin };

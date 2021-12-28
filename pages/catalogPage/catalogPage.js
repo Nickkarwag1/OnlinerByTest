@@ -10,15 +10,15 @@ const SELECTOR = {
 
 function isOpened(pageTitle) {
   const pageTitleSelector = `//h1[contains(@class, 'header_title') and text()='${pageTitle}']`;
-  return $(pageTitleSelector).isDisplayed();
+  return element(pageTitleSelector).elementIsDisplayed();
 }
 
 function checkTagsExists() {
-  return $(SELECTOR.SCHEMA_TAG).isDisplayed();
+  return element(SELECTOR.SCHEMA_TAG).elementIsDisplayed();
 }
 
 function getTagText() {
-  return $(SELECTOR.SCHEMA_TAG_TEXT).getText();
+  return element(SELECTOR.SCHEMA_TAG_TEXT).getElementText();
 }
 
 async function deleteTagIfExists() {
