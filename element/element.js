@@ -26,16 +26,24 @@ export default function element(selector) {
     await el.click();
   }
 
+  async function waitForElementDisplayed(){
+    return el.waitForDisplayed();
+  }
+
   async function elementIsDisplayed() {
-    await el.waitForDisplayed();
     return el.isDisplayed();
   }
 
+  async function moveToElement(){
+    await el.moveTo();
+  }
   return {
     getElementText,
     setValue,
     clickElement,
     scrollToElement,
     elementIsDisplayed,
+    waitForElementDisplayed,
+    moveToElement,
   };
 }

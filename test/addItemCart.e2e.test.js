@@ -32,7 +32,6 @@ describe("Onliner test", function () {
     ).to.be.true;
     await EnterHomePage.clickSelectorHeadPage(CATALOG);
     await EnterHomePage.clickSelectorCatalogBar(EAT);
-    await browser.pause(2000);
     await HeadCatalogEatPage.clickNameInCatalogEatPage(SHAURMA);
     await ContrabandaInstitutionPage.clickButtonOrder();
     await ContrabandaInstitutionPage.clickTheConfirmationCity();
@@ -42,6 +41,11 @@ describe("Onliner test", function () {
     expect(
       await CartPage.isOpenedProduct(),
       "Product in carts page should be opened"
+    ).to.be.true;
+    await CartPage.deleteProductInCart();
+    expect(
+      await CartPage.isOpenedRemoteProduct(),
+      "Product in carts should be delete"
     ).to.be.true;
   });
 });
