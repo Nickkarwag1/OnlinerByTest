@@ -11,19 +11,12 @@ const NAVIGATION_BAR_TAB = {
   NEW_YEARS_TREES: "Новогодние елки",
 };
 
-const NAVIGATION_BAR_HEAD_PAGE = {
-  CATALOG: "Каталог",
-};
-
-const NAVIGATION_BAR_CATALOG = {
-  EAT: 'Еда',
-}
 async function clickSelectorHeadPage(selectorName) {
   const headPageSelector = `//span[contains(@class, "navigation__text") and text() = "${selectorName}"]`;
   await element(headPageSelector).clickElement();
 }
 
-async function clickSelectorCatalogBar(nameBar){
+async function clickSelectorCatalogBar(nameBar) {
   const selectorBar = `//span[contains(@class, "catalog-navigation-classifier__item-title-wrapper") and text() = "${nameBar}"]`;
   await element(selectorBar).clickElement();
 }
@@ -49,8 +42,6 @@ const EnterHomePage = {
   NAVIGATION_BAR_TAB,
   clickIconProfile,
   clickSelectorHeadPage,
-  NAVIGATION_BAR_HEAD_PAGE,
   clickSelectorCatalogBar,
-  NAVIGATION_BAR_CATALOG,
 };
 export default EnterHomePage;

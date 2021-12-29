@@ -1,9 +1,5 @@
 import element from "../element/element";
 
-const NAVIGATION_EAT_BAR = {
-  SHAURMA: "Шаурма",
-};
-
 async function clickNameInCatalogEatPage(nameTab) {
   const selector = `//div[contains(@class, "aside-title")and text()=" ${nameTab} "]`;
   await element(selector).clickElement();
@@ -11,5 +7,5 @@ async function clickNameInCatalogEatPage(nameTab) {
   await element(selectorInstitution).clickElement();
 }
 
-const HeadCatalogEatPage = { clickNameInCatalogEatPage, NAVIGATION_EAT_BAR };
+const HeadCatalogEatPage = { clickNameInCatalogEatPage };
 export default HeadCatalogEatPage;

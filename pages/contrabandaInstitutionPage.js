@@ -5,6 +5,13 @@ async function clickButtonOrder() {
   await element(selector).clickElement();
 }
 
+async function clickTheConfirmationCity() {
+  const selectorButton = `//span[contains(@class, "offers-form__button")]`;
+  const elem = element(selectorButton);
+  await elem.scrollToElement();
+  await elem.clickElement();
+}
+
 async function clickButtonInCart() {
   const selector = `//div[contains(@class,"offers-list__part offers-list__part_action")]//a[contains(@class, "button-style_expletive")]`;
   const elem = element(selector);
@@ -12,5 +19,11 @@ async function clickButtonInCart() {
   await elem.clickElement();
   await elem.clickElement();
 }
-const ContrabandaInstitutionPage = { clickButtonOrder, clickButtonInCart };
+
+const ContrabandaInstitutionPage = {
+  clickButtonOrder,
+  clickButtonInCart,
+  clickTheConfirmationCity,
+};
+
 export default ContrabandaInstitutionPage;

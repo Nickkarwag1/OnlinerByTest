@@ -8,9 +8,11 @@ import { maximize, navigateTo } from "../utils/browserActions";
 import EnterHomePage from "../pages/homePage";
 import HeadCatalogEatPage from "../pages/headCatalogEatPage";
 import ContrabandaInstitutionPage from "../pages/contrabandaInstitutionPage";
-const { CATALOG } = EnterHomePage.NAVIGATION_BAR_HEAD_PAGE;
-const { EAT } = EnterHomePage.NAVIGATION_BAR_CATALOG;
-const { SHAURMA } = HeadCatalogEatPage.NAVIGATION_EAT_BAR;
+import TestData from "./testData";
+import CartPage from "../pages/cartPage";
+const { CATALOG } = TestData.NAVIGATION_BAR_HEAD_PAGE;
+const { EAT } = TestData.NAVIGATION_BAR_CATALOG;
+const { SHAURMA } = TestData.NAVIGATION_EAT_BAR;
 
 describe("Onliner test", function () {
   beforeEach(async () => {
@@ -33,7 +35,13 @@ describe("Onliner test", function () {
     await browser.pause(2000);
     await HeadCatalogEatPage.clickNameInCatalogEatPage(SHAURMA);
     await ContrabandaInstitutionPage.clickButtonOrder();
+    await ContrabandaInstitutionPage.clickTheConfirmationCity();
     await ContrabandaInstitutionPage.clickButtonInCart();
-    await browser.pause(2000);
+    expect(await CartPage.isOpenedCart(), "Carts page should be opened").to.be
+      .true;
+    expect(
+      await CartPage.isOpenedProduct(),
+      "Product in carts page should be opened"
+    ).to.be.true;
   });
 });

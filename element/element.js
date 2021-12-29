@@ -27,6 +27,7 @@ export default function element(selector) {
   }
 
   async function elementIsDisplayed() {
+    await el.waitForDisplayed();
     return el.isDisplayed();
   }
 
