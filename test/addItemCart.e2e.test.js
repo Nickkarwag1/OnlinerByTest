@@ -4,48 +4,75 @@ import CONFIG from "../config/config";
 const { BASE_URL, USER } = CONFIG;
 import { expect } from "chai";
 import UsernameInHomePage from "../pages/usernameInHomePage";
-import { maximize, navigateTo } from "../utils/browserActions";
-import EnterHomePage from "../pages/homePage";
-import HeadCatalogEatPage from "../pages/headCatalogEatPage";
-import ContrabandaInstitutionPage from "../pages/contrabandaInstitutionPage";
-import TestData from "./testData";
+import { reloadSession, maximize, navigateTo } from "../utils/browserActions";
+import EnterHomePage from "../pages/homePage/homePage";
 import CartPage from "../pages/cartPage";
-const { CATALOG } = TestData.NAVIGATION_BAR_HEAD_PAGE;
-const { EAT } = TestData.NAVIGATION_BAR_CATALOG;
-const { SHAURMA } = TestData.NAVIGATION_EAT_BAR;
+import { ITEMS } from "../pages/homePage/components/mainNavigationBar";
+import CatalogPage from "../pages/catalogPage/catalogPage";
+import CatalogMastheadPage from "../pages/catalogPage/catalogMastheadPage";
+import BasePage from "../pages/basePage";
 
-describe("Onliner test", function () {
-  beforeEach(async () => {
-    await browser.reloadSession();
+const { CATEGORY, SUBCATEGORY, CAFE, PRODUCT } = SHAURMA;
+
+describe("Product Card Test only", function () {
+  before(async () => {
+    await reloadSession();
     await maximize();
     await navigateTo(BASE_URL);
   });
 
-  it("Open only browser page in url, input login & password and adding an item to the cart", async function () {
+  it("User should be logged in", async function () {
+    expect(await EnterLogPage.isOpened()).to.be.true;
+
     await EnterLogPage.clickLogin();
     await LoginPage.logIn(USER);
-    await EnterHomePage.clickIconProfile();
-    await EnterHomePage.clickNameProfile();
+
+    await EnterHomePage.openUserProfile();
+
     expect(
-      await UsernameInHomePage.isOpened(),
+      await UsernameInHomePage.getUserName(),
       "User was not be able to login to application"
-    ).to.be.true;
-    await EnterHomePage.clickSelectorHeadPage(CATALOG);
-    await EnterHomePage.clickSelectorCatalogBar(EAT);
-    await HeadCatalogEatPage.clickNameInCatalogEatPage(SHAURMA);
-    await ContrabandaInstitutionPage.clickButtonOrder();
-    await ContrabandaInstitutionPage.clickTheConfirmationCity();
-    await ContrabandaInstitutionPage.clickButtonInCart();
-    expect(await CartPage.isOpenedCart(), "Carts page should be opened").to.be
+    ).to.eql(USER.USERNAME);
+  });
+
+  it("Catalog should be opened", async function () {
+    await EnterHomePage.MainNavigationBar.openItem(ITEMS.CATALOG);
+    expect(await CatalogPage.isOpened()).to.be.true;
+  });
+
+  it("Category should be opened", async function () {
+    await CatalogPage.CatalogNavigation.openCategory(CATEGORY);
+    await CatalogPage.CatalogNavigation.selectItemInAsideList(
+      SUBCATEGORY,
+      CAFE
+    );
+  });
+
+  it("Product should be opened", async function () {
+    await CatalogPage.openNeededProduct(PRODUCT);
+    const pageTitle = await CatalogMastheadPage.getPageTitle();
+    expect(pageTitle).to.eql(PRODUCT);
+  });
+
+  it("Product should be added to card", async function () {
+    await CatalogMastheadPage.addToCard();
+    await BasePage.openCard();
+
+    expect(await CartPage.isCartOpened(), "Carts page should be opened").to.be
       .true;
+
     expect(
-      await CartPage.isOpenedProduct(),
+      await CartPage.isProductInCard(PRODUCT),
       "Product in carts page should be opened"
     ).to.be.true;
-    await CartPage.deleteProductInCart();
+  });
+
+  it("Product should be deleted from card", async function () {
+    await CartPage.deleteProductInCart(PRODUCT);
+
     expect(
-      await CartPage.isOpenedRemoteProduct(),
-      "Product in carts should be delete"
-    ).to.be.true;
+      await CartPage.isProductInCard(PRODUCT),
+      "Product in carts page should be opened"
+    ).to.be.false;
   });
 });

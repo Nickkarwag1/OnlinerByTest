@@ -1,31 +1,33 @@
 import element from "../element/element";
-import TestData from "../test/testData";
-const { PRODUCT_SHAURMA } = TestData.CART;
 
 const SELECTOR = {
   CART_SELECTOR: `//div[contains(@class, "cart-form__title")]`,
-  PRODUCT_IN_CART_SELECTOR: `//a[contains(@class, "cart-form__link_base-alter")and normalize-space(text())='${PRODUCT_SHAURMA}']`,
   DELETE_PRODUCT_IN_CART: `//a[contains(@class, "button_remove")]`,
-  REMOTE_PRODUCT: `//div[contains(@class, "cart-form__description_condensed-extra")and normalize-space(text())='Вы удалили ${PRODUCT_SHAURMA}']`
+  PAGE_TITLE:
+    "//div[contains(@class, \"cart-form__title\") and normalize-space(text())='Корзина']",
 };
 
-function isOpenedCart() {
-  return element(SELECTOR.CART_SELECTOR).waitForElementDisplayed();
+function isCartOpened() {
+  return element(SELECTOR.PAGE_TITLE).isElementDisplayed();
 }
 
-function isOpenedProduct() {
-  return element(SELECTOR.PRODUCT_IN_CART_SELECTOR).waitForElementDisplayed();
+function isProductInCard(product) {
+  return element(
+    `//div[@class='cart-form__offers-unit cart-form__offers-unit_primary']//a[normalize-space(text())='${product}']`
+  ).isElementDisplayed();
 }
 
-async function deleteProductInCart() {
-  const elem =  element(SELECTOR.DELETE_PRODUCT_IN_CART);
+async function deleteProductInCart(product) {
+  const elem = element(
+    `//a[contains(@class, "cart-form__link_base-alter")and normalize-space(text())='${product}']/../../following-sibling::div[contains(@class,"part_action")]//a[contains(@class, "button_remove")]`
+  );
   await elem.moveToElement();
   await elem.clickElement();
 }
 
-function isOpenedRemoteProduct(){
-  return element(SELECTOR.REMOTE_PRODUCT).waitForElementDisplayed();
-}
-
-const CartPage = { isOpenedCart, isOpenedProduct, deleteProductInCart, isOpenedRemoteProduct };
+const CartPage = {
+  isCartOpened,
+  isProductInCard,
+  deleteProductInCart,
+};
 export default CartPage;

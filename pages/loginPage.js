@@ -15,8 +15,8 @@ async function setPassword(password) {
   await element(SELECTORS.PASSWORD_INPUT).setValue(password);
 }
 
-async function logIn({ USERNAME, PASSWORD }) {
-  await setUsername(USERNAME);
+async function logIn({ EMAIL, PASSWORD }) {
+  await setUsername(EMAIL);
   await setPassword(PASSWORD);
   await element(SELECTORS.CLICK_TO_COME_IN_BUTTON).clickElement();
 }

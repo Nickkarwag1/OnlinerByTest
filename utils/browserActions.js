@@ -9,4 +9,7 @@ async function navigateTo(url){
     await browser.url(url);
 }
 
-export {maximize, navigateTo};
+async function reloadSession(){
+    await browser.reloadSession();
+}
+export {maximize, navigateTo, reloadSession};

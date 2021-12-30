@@ -4,7 +4,7 @@ import CONFIG from "../config/config";
 const { BASE_URL, USER } = CONFIG;
 import { expect } from "chai";
 import { maximize, navigateTo } from "../utils/browserActions";
-import EnterHomePage from "../pages/homePage";
+import EnterHomePage from "../pages/homePage/homePage";
 import CatalogPage from "../pages/catalogPage/catalogPage";
 
 const { NEW_YEARS_TREES } = EnterHomePage.NAVIGATION_BAR_TAB;

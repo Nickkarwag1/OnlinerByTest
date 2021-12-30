@@ -22,19 +22,35 @@ export default function element(selector) {
 
   async function clickElement() {
     logger.info(`Click by element xpath: ${selector}`);
-    await el.waitForClickable();
+    await el.waitForClickable({ timeout: 20000 });
     await el.click();
   }
 
-  async function waitForElementDisplayed(){
-    return el.waitForDisplayed();
+  async function isElementDisplayed({ timeout, reverse } = {}) {
+    logger.debug(`Waiting to be ${reverse ? "hidden" : "visible"}`);
+    let errorMessage = reverse
+      ? "Still displayed"
+      : `Didn't apper in ${timeout} ms`;
+
+    try {
+      const element = await $(selector);
+
+      return await element.waitForDisplayed({
+        timeout,
+        reverse,
+        timeoutMsg: errorMessage,
+      });
+    } catch (error) {
+      logger.error(`"${selector}" - ${errorMessage}`);
+      return false;
+    }
   }
 
   async function elementIsDisplayed() {
     return el.isDisplayed();
   }
 
-  async function moveToElement(){
+  async function moveToElement() {
     await el.moveTo();
   }
   return {
@@ -43,7 +59,7 @@ export default function element(selector) {
     clickElement,
     scrollToElement,
     elementIsDisplayed,
-    waitForElementDisplayed,
+    isElementDisplayed,
     moveToElement,
   };
 }

@@ -1,10 +1,12 @@
 import element from "../element/element";
 
-const USERNAME_IN_HOMEPAGE = "//div[contains(@class, 'header__name')]";
+const SELECTORS = {
+  USERNAME: "//div[contains(@class, 'header__name')]",
+};
 
-async function isOpened() {
-  return element(USERNAME_IN_HOMEPAGE).waitForElementDisplayed();
+function getUserName() {
+  return element(SELECTORS.USERNAME).getElementText();
 }
 
-const UsernameInHomePage = { isOpened };
+const UsernameInHomePage = { getUserName };
 export default UsernameInHomePage;
