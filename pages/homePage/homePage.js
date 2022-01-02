@@ -1,4 +1,5 @@
-import element from "../element/element";
+import element from "../../element/element";
+import MainNavigationBar from "./components/mainNavigationBar";
 
 const SELECTOR = {
   ICON_USER_PROFILE: "//a[contains(@class, 'profile__preview')]",
@@ -26,10 +27,15 @@ async function clickNameProfile() {
   await element(SELECTOR.NAME_USER_PROFILE).clickElement();
 }
 
+async function openUserProfile() {
+  await clickIconProfile();
+  await clickNameProfile();
+}
+
 const EnterHomePage = {
-  clickNameProfile,
   clickTab,
+  openUserProfile,
   NAVIGATION_BAR_TAB,
-  clickIconProfile,
+  MainNavigationBar,
 };
 export default EnterHomePage;

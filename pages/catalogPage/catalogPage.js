@@ -1,4 +1,7 @@
 import element from "../../element/element";
+import { ITEMS } from "../homePage/components/mainNavigationBar";
+import CatalogNavigation from "./components/catalogNavigation";
+import BasePage from "../basePage";
 
 const SELECTOR = {
   SCHEMA_TAG: "//*[@id='schema-tags']//div[@class='schema-tags__item']",
@@ -8,9 +11,12 @@ const SELECTOR = {
     '//div[@class="schema-product__group"]//div[@class="schema-product__title"]//span[not(contains(@data-bind,"children"))]',
 };
 
-function isOpened(pageTitle) {
-  const pageTitleSelector = `//h1[contains(@class, 'header_title') and text()='${pageTitle}']`;
-  return element(pageTitleSelector).elementIsDisplayed();
+function isOpened() {
+  const { CATALOG } = ITEMS;
+  return BasePage.isPageOpened(
+    CATALOG,
+    `//h1[contains(@class, 'catalog-navigation__title') and text()='${CATALOG}']`
+  );
 }
 
 function checkTagsExists() {
@@ -54,10 +60,18 @@ async function getAllItemTitles() {
   return foundedTitles;
 }
 
+async function openNeededProduct(productName) {
+  const selector = `//span[normalize-space(text())="${productName}"]`;
+  await element(selector).moveToElement();
+  await element(selector).clickElement();
+}
+
 const CatalogPage = {
   isOpened,
+  openNeededProduct,
   deleteTagIfExists,
   selectCheckBoxInSection,
   getAllItemTitles,
+  CatalogNavigation,
 };
 export default CatalogPage;

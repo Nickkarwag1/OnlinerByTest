@@ -4,7 +4,7 @@ import CONFIG from "../config/config";
 const { BASE_URL, USER } = CONFIG;
 import { expect } from "chai";
 import { maximize, navigateTo } from "../utils/browserActions";
-import EnterHomePage from "../pages/homePage";
+import EnterHomePage from "../pages/homePage/homePage";
 import PhonesPage from "../pages/phonesPage";
 
 const { PHONES } = EnterHomePage.NAVIGATION_BAR_TAB;
