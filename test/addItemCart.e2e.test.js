@@ -11,6 +11,7 @@ import { ITEMS } from "../pages/homePage/components/mainNavigationBar";
 import CatalogPage from "../pages/catalogPage/catalogPage";
 import CatalogMastheadPage from "../pages/catalogPage/catalogMastheadPage";
 import BasePage from "../pages/basePage";
+import {SHAURMA} from "./testData";
 
 const { CATEGORY, SUBCATEGORY, CAFE, PRODUCT } = SHAURMA;
 
