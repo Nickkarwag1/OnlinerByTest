@@ -1,7 +1,7 @@
 {
     "main": "wdio.conf.js",
     "scripts": {
-        "test": "mocha --timeout 10000",
+        "test": "mocha",
         "wdio": "wdio run wdio.conf.js",
         "build": "babel index.js -d dist",
         "start": "npm run build && nodemon dist/index.js"
